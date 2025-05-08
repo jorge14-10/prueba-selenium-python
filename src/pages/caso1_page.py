@@ -6,6 +6,8 @@ from selenium.webdriver import ActionChains
 import time
 from faker import Faker
 import random
+import allure
+from selenium.webdriver import Chrome
 
 fake = Faker("es_ES")
 
@@ -205,4 +207,12 @@ class Caso1Page:
         aceptar_uso_de_datos_personales = self.driver.find_element(by=By.ID, value="sendNewsLetter")
         aceptar_uso_de_datos_personales.click()
         self.continuar()
-        
+    
+    #Funcion para tomar captura de pantalla
+    @allure.step("Tomar captura de pantalla")
+    def tomar_captura(self, driver: Chrome, nombre="screenshot"):
+        allure.attach(
+            driver.get_screenshot_as_png(),
+            name=nombre,
+            attachment_type=allure.attachment_type.PNG
+        )
