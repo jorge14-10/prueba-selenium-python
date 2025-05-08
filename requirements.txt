@@ -1,1 +1,16 @@
-selenium==4.31.0
+# requirements.txt
+
+# Selenium para automatización web
+selenium==4.21.0
+
+# Pytest para ejecutar los tests
+pytest==8.2.0
+
+# Allure para reportería avanzada
+allure-pytest==2.14.2
+
+# Faker para generar datos aleatorios
+Faker==25.2.0
+
+# Opcional: webdriver-manager para manejar drivers automáticamente (útil si no usas ChromeDriver manualmente)
+webdriver-manager==4.0.1
