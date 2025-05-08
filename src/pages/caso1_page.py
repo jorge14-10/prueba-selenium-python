@@ -19,7 +19,31 @@ class Caso1Page:
         self.driver.get(url)
         title = self.driver.title
         assert title == "avianca - encuentra tiquetes y vuelos baratos | Web oficial", f"Título incorrecto: se obtuvo '{title}'"
+
+    #Validar el idioma
+    def validar_idioma(self):
+        idioma =  self.driver.find_element(By.XPATH, "//div[@class='main-header_nav-secondary']//button[@class='dropdown_trigger dropdown_trigger--active']")
+        idioma.click()
+
+        lista_idiomas = self.wait.until(
+            EC.presence_of_all_elements_located((By.XPATH, "//div[@class='dropdown_content ng-star-inserted']//ul//li"))
+        )
+        lista_idiomas[3].click()
+        assert len(lista_idiomas) == 4, f"Se esperaban 4 idiomas, pero se encontraron {len(lista_idiomas)}"
     
+    #Validar paises
+    def validar_pais(self):
+        pais =  self.driver.find_element(By.XPATH, "//div[@class='main-header_nav-secondary']//button[@id='pointOfSaleSelectorId']")
+        pais.click()
+        boton_cerrar = self.wait.until(
+            EC.presence_of_element_located((By.XPATH, "//button[@class='points-of-sale_header_close-button']"))
+        )
+        lista_paises = self.wait.until(
+            EC.presence_of_all_elements_located((By.XPATH, "//ul[@id='pointOfSaleListId']//li"))
+        )
+        assert len(lista_paises) == 22, f"Se esperaban 22 paises, pero se encontraron {len(lista_paises)}"
+        boton_cerrar.click()
+        
     #Se encarga de configurar el vuelo para solo ida
     def seleccionar_solo_ida(self):
         solo_ida = self.driver.find_element(By.ID, "journeytypeId_1")
