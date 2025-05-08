@@ -24,6 +24,7 @@ def test_reserva_solo_ida(setup):
     with allure.step("Reserva solo ida"):
         #Llama la funcion cargar y es la que se encarga de abrir la pagina
         pagina.cargar("https://nuxqa4.avtest.ink/")
+        pagina.tomar_captura(driver, "pantalla_inicio")
 
         #Validar idiomas
         pagina.validar_idioma()
@@ -41,6 +42,7 @@ def test_reserva_solo_ida(setup):
         #Selecciona Los pasajeros y los confirma
         pagina.seleccionar_pasajeros()
         pagina.confirmar_pasajeros()
+        pagina.tomar_captura(driver, "Pantalla de seleccion de pasajeros")
         pagina.buscar()
 
         #Selecciona el plan y valida que si quede selccionado en el sumary
@@ -53,6 +55,7 @@ def test_reserva_solo_ida(setup):
         pagina.llenar_los_campos_nombres_y_apellidos(0, 1)
         pagina.llenar_el_campo_fecha_de_nacimiento(1, 2, 2, 4, 3, 5)
         pagina.llenar_el_campo_nacionalidad(4, 5)
+        pagina.tomar_captura(driver, "Campos del pasajero 1")
 
         #Llenar campos del pasajero 2
         pagina.llenar_el_campo_genero(6, 7)
